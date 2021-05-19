@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.3/jquery.scrollTo.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!-- DATA PROCESSING -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.min.js"></script>
@@ -55,6 +55,22 @@
             overflow-y: scroll;
             overflow-x: hidden;
         }
+        
+        #hover-title {
+            font-size: 12pt;
+            font-weight: 700;
+        }
+        
+        .btn {
+            font-size: 9pt;
+            background-color: grey;
+            color: white;
+            border: none;
+        }
+        
+        .btn:hover {
+            background-color: lightgrey;
+        }
     </style>
 </head>
 
@@ -62,6 +78,45 @@
     <div class="container">
         <div class="row">
             <h1>RAM_WORKING</h1>
+        </div>
+        <div class="row">
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                <input type="checkbox" class="btn-check" id="btncheck1" value="STECAccess" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck1">Access</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck2" value="STECAquaticHab" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck2">Aquatic Habitat</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck3" value="STECCoastWet" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck3">Coastal Wetland</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck4" value="STECEelgrass" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck4">Eel Grass</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck5" value="STECForests" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck5">Forests</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck6" value="STECFreshWet" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck6">Fresh Water Wetland</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck7" value="STECIslands" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck7">Islands</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck8" value="STECOyster" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck8">Oysters</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck9" value="STECSediment" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck9">Sediment</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck10" value="STECShore" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck10">Shore</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck11" value="STECTributary" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck11">Tributary</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck12" value="STECWater" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck12">Water</label>
+            </div>
         </div>
 
         <div class="row">
@@ -79,7 +134,9 @@
 
 <script>
     // START MAP HERE
-    var map = L.map('map').setView([40.832, -73.923], 10);
+    let initial_position = [40.632, -73.923];
+    let initial_zoom = 10;
+    var map = L.map('map').setView(initial_position, initial_zoom);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
@@ -91,22 +148,13 @@
 
     //Add Home Button
     L.easyButton('<i class="material-icons" style="font-size:18px;padding-bottom: 3px; display: inline-flex; vertical-align: middle;">home</i>', function(btn, map) {
-        map.setView([40.832, -73.923], 10);
+        map.flyTo(initial_position, initial_zoom);
     }, 'Zoom To Home').addTo(map);
 
-    // Polygon Style
-    let style = {
-        fillColor: "#f4a261",
-        weight: 0,
-        opacity: 1,
-        fillOpacity: 0.7
-    };
-
+    // -----------------------------------------   FUNCTIONS  -------------------------------------------------
     // Prepare Pop Up Function Build Pop Up
     function onEachFeature(feature, layer) {
-        var popupContent = `<b>Name:</b> ${feature.properties.SiteName} <br> 
-                <b>ID:</b>${feature.properties.CRPID}<br>
-                <b>Contact:</b>${feature.properties.Contact}`;
+        var popupContent = `${feature.properties.SiteName}`;
         layer.bindPopup(popupContent);
     };
 
@@ -129,10 +177,26 @@
         })
     };
 
+    // Colors fro the Categorical Choropleth
+    function getColor(d) {
+        return d == "working sites" ? '#f4a261' : '#2a9d8f';
+    }
+
+    // Style Object for the general Polygon Styline
+    function style(data) {
+        return {
+            fillColor: getColor(data.properties.db), // Here is the categorical coloring.
+            weight: 0,
+            opacity: 1,
+            fillOpacity: 0.7
+        };
+    }
     // Generate each polygon by binding pop up as well. 
     // Pop-up Binding: onEachFeature, Style = style
     function generatePolygon(data, L) {
-        //data.features.forEach(f => {
+
+        $(".leaflet-interactive").remove();
+
         let geoJsonLayer = L.geoJSON(data, {
             style: style,
             onEachFeature: onEachFeature
@@ -143,7 +207,7 @@
         });
     }
 
-    let url = "data/Test_DB.geojson"
+    let url = "https://raw.githubusercontent.com/PrattSAVI/RAM/main/data/PolySites.geojson"
 
     //Use D3 to read JSON -> This might be an overkill. 
     //d3.json(url).then(function(data) {
@@ -151,7 +215,6 @@
         console.log(data);
 
         generatePanel(data);
-
         generatePolygon(data, L);
 
         // ------------------------------ CLICKS & INTERACTION
@@ -173,9 +236,40 @@
                 axis: "y",
                 duration: 1500
             })
-
-
         });
+
+
+        //---------------------- BUTTON INTERACTION -> Filtering
+        $(".btn-check").change(function() { //If change on button group
+            let btn_ids = [];
+            $(".btn-check").each(function() { // Get all ids in the button group
+                btn_ids.push(this.id);
+            });
+
+            // Iterate over to retrieve checked ones.
+            let all_checked = [];
+            btn_ids.forEach(function(b) {
+                if ($("#" + b).is(':checked') === true) {
+                    all_checked.push($("#" + b).attr("value"));
+                }
+            })
+
+            // Go over all checked columns (values) to check for true values
+            // filter only works forwards but not backwards
+            let filtered = data;
+            all_checked.forEach(function(column) {
+
+                filtered.features = filtered.features.filter(item => {
+                    if (item['properties'][column] == true) {
+                        return item;
+                    }
+                });
+            });
+
+            console.log(filtered);
+            generatePolygon(filtered, L);
+            generatePanel(filtered);
+        })
 
     });
 </script>
