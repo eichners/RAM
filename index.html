@@ -256,7 +256,8 @@
 
             // Go over all checked columns (values) to check for true values
             // filter only works forwards but not backwards
-            let filtered = data;
+
+            let filtered = jQuery.extend(true, {}, data);;
             all_checked.forEach(function(column) {
 
                 filtered.features = filtered.features.filter(item => {
