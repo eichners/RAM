@@ -1,4 +1,4 @@
-#%%
+#%% IMPORT LIBS
 
 import pandas as pd
 import geopandas as gpd
@@ -36,7 +36,7 @@ working_sites.head()
 #working_sites['Spatial Data'].unique().tolist() 
 working_sites.groupby( by='Spatial Data').size()
 
-#%% -----------------------  MATCH HRE FILES ------------------------ NOT DONE!!!!
+#%% -----------------------  MATCH HRE FILES
 #HRE Sites
 
 hre_poly = gpd.read_file( r"C:\Users\csucuogl\Desktop\RAM_Sites\HREMerge\HRE_Filled_Flat.shp" )
@@ -61,7 +61,7 @@ ws_old_data
 
 # %%
 #---------------------- True (From New Data)
-ws_new_data = working_sites[ working_sites['Spatial Data'] == True ]
+ws_new_data = working_sites[ working_sites['Spatial Data'] == 'True' ]
 ws_new_data = ws_new_data.join( new_poly[['CRPID','geometry']].set_index('CRPID') , on = 'CRPID' )
 ws_new_data
 
@@ -143,11 +143,11 @@ ram_poly = ram_poly.astype({col: 'float32' for col in ram_poly.select_dtypes('fl
 ram_poly = ram_poly.astype({col: 'string' for col in ram_poly.select_dtypes('object').columns})
 
 ram_poly.dtypes
-# %% Export Polygons
+# %% Export Polygons & Points
 
+folder = r'C:\Users\csucuogl\Documents\GitHub\RAM\data'
 ram_poly.to_file( os.path.join(folder , "PolySites.geojson") , driver = 'GeoJSON' , encoding='utf-8' )
 
-# %% Export Points. 
 gdf_comp['db'] = 'retired'
 gdf_comp.to_file( os.path.join(folder , "PointSites.geojson") , driver = 'GeoJSON' , encoding='utf-8' )
 
