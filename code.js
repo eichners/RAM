@@ -72,6 +72,7 @@ function style(data) {
     };
 }
 
+
 var pointstyle = {
     radius: 2,
     fillColor: 'green',
