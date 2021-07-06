@@ -1,0 +1,111 @@
+    html {
+        width: 100%;
+        height: 100%
+    }
+    
+     :root {
+        --orange: #f4a261;
+        --blue: #2a9d8f;
+    }
+    
+    body {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+    }
+    
+    #screen {
+        padding: 0;
+        min-height: 100vh;
+        max-height: 100vh;
+    }
+    
+    .place-list {
+        font-size: 11pt;
+        padding: 5px 5px 5px 5px;
+        margin: 5px 5px 5px 5px;
+        cursor: pointer;
+    }
+    
+    .working-site:hover {
+        color: var(--orange);
+    }
+    
+    .retired-site:hover {
+        color: var(--blue);
+    }
+    
+    #holder {
+        margin-top: 15px;
+        padding: 5px 5px 5px 5px;
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        max-height: 100vh;
+    }
+    
+    .element {
+        background-color: white;
+        height: 100%;
+    }
+    
+    #map {
+        height: 100%;
+    }
+    
+    #hover-title {
+        font-size: 12pt;
+        font-weight: 700;
+        font-weight: bold;
+    }
+    
+    .btn {
+        font-size: 12pt;
+        color: #333;
+        background-color: white;
+        border: none;
+    }
+    
+    .btn:hover {
+        background-color: lightgrey;
+    }
+    
+    .btn-primary:hover {
+        background-color: white;
+        color: #333!important;
+    }
+    
+    .btn-primary:focus {
+        background: white;
+        color: #333!important;
+        box-shadow: none!important;
+    }
+    
+    #site-list-btn {
+        height: 40px;
+        width: 100%;
+        padding: 5px 15px;
+        text-align: left;
+        font-size: 14pt;
+    }
+    
+    .container {
+        width: 100%;
+        height: 100%;
+        margin: 0 0 0 0;
+        max-width: 100%;
+    }
+    
+    .collapse-nav-button:before {
+        content: "\2212";
+    }
+    
+    .collapsed .collapse-nav-button:before {
+        content: "\2b";
+    }
+    
+    .row {
+        margin: 0px
+    }
