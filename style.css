@@ -5,7 +5,8 @@
     
      :root {
         --orange: #f4a261;
-        --blue: #2a9d8f;
+        --blue: #62A4D6;
+        --green: #93C15C;
     }
     
     body {
@@ -15,6 +16,12 @@
         max-height: 100%;
     }
     
+    h1 {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 28pt;
+        color: #5CAA46;
+    }
+    
     #screen {
         padding: 0;
         min-height: 100vh;
@@ -22,18 +29,21 @@
     }
     
     .place-list {
-        font-size: 11pt;
+        font-size: 10pt;
         padding: 5px 5px 5px 5px;
         margin: 5px 5px 5px 5px;
         cursor: pointer;
+        color: #666
     }
     
     .working-site:hover {
-        color: var(--orange);
+        color: var(--blue)!important;
+        cursor: pointer
     }
     
     .retired-site:hover {
-        color: var(--blue);
+        color: var(--green)!important;
+        cursor: pointer
     }
     
     #holder {
@@ -66,6 +76,7 @@
         color: #333;
         background-color: white;
         border: none;
+        padding: 1px
     }
     
     .btn:hover {
@@ -99,7 +110,8 @@
     }
     
     .collapse-nav-button:before {
-        content: "\2212";
+        content: "\2012";
+        font-weight: bold;
     }
     
     .collapsed .collapse-nav-button:before {
@@ -107,5 +119,19 @@
     }
     
     .row {
-        margin: 0px
+        margin: 0px;
+    }
+    
+    .form-check {
+        margin-left: 10px;
+        ;
+    }
+    
+    #button-holder {
+        max-width: 300px;
+    }
+    
+    .site-title {
+        color: #F08D02!important;
+        cursor: pointer
     }

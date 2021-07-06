@@ -34,16 +34,22 @@
 
 <body>
     <div class="container h-100 m-0 p-0">
-        <div class="row">
-            <h1>RAM_WORKING</h1>
+
+        <div class="row p-3 pb-1" style="border-bottom: 1px solid #5CAA46;">
+            <h1>HUDSON-RARITAN ESTURY <b>Restoration Activity Map</b></h1>
         </div>
 
 
         <div class="row p-0 m-0">
-            <div class="col-3 p-0" id="screen">
+            <div class="col-2 p-0" id="screen">
 
-                <div class="row">
+                <div class="row mt-2">
                     <!--TEC BUTTONS-->
+                    <span style="font-weight:bold;font-size: 18pt;color:#444">Filters</span>
+                    <span style="font-size: 14pt;font-weight:bold;color:#666">Target Ecosystem Characteristics</span>
+                    <span style="font-size: 12pt;font-weight:bold;color:#999">Filter by TEC</span>
+                </div>
+                <div class="row mt-2">
                     <div id="button-holder">
                         <input type="checkbox" class="btn-check change-detect" id="btncheck1" value="STECAccess" autocomplete="off">
                         <label class="btn btn-outline-primary" for="btncheck1"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
@@ -84,33 +90,40 @@
                 </div>
                 <hr>
 
-                <div class="row p-4">
+                <div class="row mt-2">
+                    <!--CATEGORY BUTTONS-->
+                    <span style="font-weight:bold;font-size: 18pt;color:#444">Restoration Projects</span>
+                    <span style="font-size: 14pt;font-weight:bold;color:#666">Filter by site category</span>
+                </div>
+                <div class="row pl-2 mt-2">
                     <div class="form-check">
                         <input class="form-check-input change-detect" type="checkbox" value="Working Sites" id="flexCheckChecked" checked>
-                        <label class="form-check-label change-detect" for="flexCheckDefault">Working Sites</label>
+                        <label class="form-check-label change-detect" for="flexCheckDefault"><span class="working-site" style="font-size: 10pt;font-weight:bold;color:#666">Opportunities</span></label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input change-detect" type="checkbox" value="Retired Sites" id="flexCheckChecked" checked>
-                        <label class="form-check-label" for="flexCheckChecked">Retired Sites</label>
+                        <label class="form-check-label" for="flexCheckChecked"><span class="retired-site" style="font-size: 10pt;font-weight:bold;color:#666">Retired Sites</span></label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input change-detect" type="checkbox" value="Completed Sites" id="flexCheckChecked" checked>
-                        <label class="form-check-label" for="flexCheckChecked">Completed Sites</label>
+                        <label class="form-check-label" for="flexCheckChecked"><span class="retired-site" style="font-size: 10pt;font-weight:bold;color:#666">Completed Projects</span></label>
                     </div>
                 </div>
 
                 <hr>
                 <!--Collapsable Site List-->
-                <button id="site-list-btn" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Site List
-                    <span class="collapse-nav-button"></span>
+                <button id="site-list-btn" class="btn btn-primary collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <div style="display:flex;justify-content: space-between;" class="site-title">                    
+                        <span ><strong>Restoration Site List</strong></span>
+                        <span class="collapse-nav-button"></span>
+                    </div>
                 </button>
                 <div class="collapse" id="collapseExample">
                     <div id="holder"></div>
                 </div>
 
             </div>
-            <div class="col-9 p-0" id="screen">
+            <div class="col-10 p-0" id="screen">
                 <div class=element id="map"></div>
             </div>
         </div>
