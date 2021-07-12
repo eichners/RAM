@@ -4,7 +4,10 @@ let initial_position = [40.632, -73.923];
 let initial_zoom = 10;
 var map = L.map('map').setView(initial_position, initial_zoom);
 
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+//let tileURL = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
+let tileURL = 'https://api.mapbox.com/styles/v1/eichners/cjp2020t41o7k2snzc9l82rpu/tiles/256/{z}/{x}/{y}@2x?2x?access_token=pk.eyJ1IjoiZWljaG5lcnMiLCJhIjoiY2lrZzVneDI4MDAyZ3VkbTZmYWlyejUzayJ9.vEGckM-D3AjV4jXmdibXyw'
+
+L.tileLayer(tileURL, {
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' + 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     id: 'mapbox/light-v9',
@@ -22,6 +25,10 @@ L.control.zoom({
 L.easyButton('<i class="material-icons" style="font-size:18px;padding-bottom: 3px; display: inline-flex; vertical-align: middle;">home</i>', function(btn, map) {
     map.flyTo(initial_position, initial_zoom);
 }, 'Zoom To Home').addTo(map);
+
+let map_orange = "#f4a261";
+let map_blue = "#62A4D6";
+let map_green = "#93C15C";
 
 // -----------------------------------------   FUNCTIONS  -------------------------------------------------
 // Prepare Pop Up Function Build Pop Up
@@ -57,9 +64,11 @@ function generatePanel(data) {
     })
 };
 
+
+
 // Colors for the Categorical Choropleth
 function getColor(d) {
-    return d == "working sites" ? '#f4a261' : '#2a9d8f';
+    return d == "working sites" ? map_blue : map_green;
 }
 
 // Style Object for the general Polygon Styline

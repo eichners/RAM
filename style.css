@@ -1,137 +1,141 @@
-    html {
-        width: 100%;
-        height: 100%
-    }
-    
-     :root {
-        --orange: #f4a261;
-        --blue: #62A4D6;
-        --green: #93C15C;
-    }
-    
-    body {
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        width: 100%;
-        height: 100%;
-        max-height: 100%;
-    }
-    
-    h1 {
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        font-size: 28pt;
-        color: #5CAA46;
-    }
-    
-    #screen {
-        padding: 0;
-        min-height: 100vh;
-        max-height: 100vh;
-    }
-    
-    .place-list {
-        font-size: 10pt;
-        padding: 5px 5px 5px 5px;
-        margin: 5px 5px 5px 5px;
-        cursor: pointer;
-        color: #666
-    }
-    
-    .working-site:hover {
-        color: var(--blue)!important;
-        cursor: pointer
-    }
-    
-    .retired-site:hover {
-        color: var(--green)!important;
-        cursor: pointer
-    }
-    
-    #holder {
-        margin-top: 15px;
-        padding: 5px 5px 5px 5px;
-        height: 100%;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        border-top: 1px solid rgba(0, 0, 0, 0.2);
-        max-height: 100vh;
-    }
-    
-    .element {
-        background-color: white;
-        height: 100%;
-    }
-    
-    #map {
-        height: 100%;
-    }
-    
-    #hover-title {
-        font-size: 12pt;
-        font-weight: 700;
-        font-weight: bold;
-    }
-    
-    .btn {
-        font-size: 12pt;
-        color: #333;
-        background-color: white;
-        border: none;
-        padding: 1px
-    }
-    
-    .btn:hover {
-        background-color: lightgrey;
-    }
-    
-    .btn-primary:hover {
-        background-color: white;
-        color: #333!important;
-    }
-    
-    .btn-primary:focus {
-        background: white;
-        color: #333!important;
-        box-shadow: none!important;
-    }
-    
-    #site-list-btn {
-        height: 40px;
-        width: 100%;
-        padding: 5px 15px;
-        text-align: left;
-        font-size: 14pt;
-    }
-    
-    .container {
-        width: 100%;
-        height: 100%;
-        margin: 0 0 0 0;
-        max-width: 100%;
-    }
-    
-    .collapse-nav-button:before {
-        content: "\2012";
-        font-weight: bold;
-    }
-    
-    .collapsed .collapse-nav-button:before {
-        content: "\2b";
-    }
-    
-    .row {
-        margin: 0px;
-    }
-    
-    .form-check {
-        margin-left: 10px;
-        ;
-    }
-    
-    #button-holder {
-        max-width: 300px;
-    }
-    
-    .site-title {
-        color: #F08D02!important;
-        cursor: pointer
-    }
+:root {
+    --orange: #f4a261;
+    --blue: #62A4D6;
+    --green: #93C15C;
+    --hh: 70px;
+}
+
+body,
+html {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh !important;
+    min-height: 100vh !important;
+    overflow-y: auto;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.row {
+    margin: 0px!important;
+    padding: 0px!important;
+}
+
+.col {
+    margin: 0px!important;
+    padding: 0px!important;
+}
+
+h1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 28pt;
+    color: #5CAA46;
+}
+
+#header {
+    height: var(--hh) !important;
+}
+
+.full-site {
+    position: absolute;
+    top: var(--hh);
+    left: 0px;
+    z-index: -1;
+    width: 100%;
+    height: calc(100% - var(--hh));
+    padding: 0px;
+}
+
+#holder {
+    margin-top: 15px;
+    padding: 5px 5px 5px 5px;
+    height: 100%;
+    overflow-y: scroll;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.place-list {
+    font-size: 10pt;
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    cursor: pointer;
+    color: #666
+}
+
+.working-site:hover {
+    color: var(--blue)!important;
+    cursor: pointer
+}
+
+.retired-site:hover {
+    color: var(--green)!important;
+    cursor: pointer
+}
+
+#hover-title {
+    font-size: 12pt;
+    font-weight: 700;
+    font-weight: bold;
+}
+
+.btn {
+    font-size: 12pt;
+    color: #333;
+    background-color: white;
+    border: none;
+    padding: 1px
+}
+
+.btn:hover {
+    background-color: lightgrey;
+}
+
+.btn-primary:hover {
+    background-color: white;
+    color: #333!important;
+}
+
+.btn-primary:focus {
+    background: white;
+    color: #333!important;
+    box-shadow: none!important;
+}
+
+#site-list-btn {
+    height: 40px;
+    width: 100%;
+    padding: 5px 15px;
+    text-align: left;
+    font-size: 14pt;
+}
+
+.site-title {
+    color: #F08D02!important;
+    cursor: pointer
+}
+
+.collapse-nav-button:before {
+    content: "\2012";
+    font-weight: bold;
+}
+
+.collapsed .collapse-nav-button:before {
+    content: "\2b";
+}
+
+.form-check {
+    margin-left: 10px;
+}
+
+#button-holder {
+    max-width: 300px;
+}
+
+.panel {
+    background: white;
+}
