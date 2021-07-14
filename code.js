@@ -40,7 +40,11 @@ function onEachFeature(feature, layer) {
 
 // Generate DOM elements based on data. Left Panel
 // Class place-list is also used in click interaction
-function generatePanel(data) {
+function generatePanel(data1,data2,data3) {
+
+    const data = [...data1,...data2,...data3] // Merge Datasets
+    console.log( data );
+
     data.forEach(f => {
         // HTML elements
         let uid = f.properties.CRPID;
@@ -61,11 +65,8 @@ function generatePanel(data) {
                 .attr('class', 'place-list retired-site')
                 .html(html_text);
         }
-
     })
 };
-
-
 
 // Colors for the Categorical Choropleth
 function getColor(d) {
@@ -82,7 +83,6 @@ function style(data) {
     };
 }
 
-
 var pointstyle = {
     radius: 2,
     fillColor: 'green',
@@ -92,16 +92,25 @@ var pointstyle = {
 };
 // Generate each polygon by binding pop up as well. 
 // Pop-up Binding: onEachFeature, Style = style
-function generatePolygon(data, point_data, L) {
+function generatePolygon(data_working, data_retired, point_data, L) {
 
     $(".leaflet-interactive").remove();
 
-    let geoJsonLayer = L.geoJSON(data, {
+    let geoJsonLayer_working = L.geoJSON(data_working, {
         style: style,
         onEachFeature: onEachFeature
     }).addTo(map);
 
-    geoJsonLayer.eachLayer(function(layer) {
+    geoJsonLayer_working.eachLayer(function(layer) {
+        layer._path.id = layer.feature.properties.CRPID;
+    });
+
+    let geoJsonLayer_retired = L.geoJSON(data_retired, {
+        style: style,
+        onEachFeature: onEachFeature
+    }).addTo(map);
+
+    geoJsonLayer_retired.eachLayer(function(layer) {
         layer._path.id = layer.feature.properties.CRPID;
     });
 
@@ -113,134 +122,134 @@ function generatePolygon(data, point_data, L) {
     }).addTo(map);
 }
 
-let url = "https://raw.githubusercontent.com/PrattSAVI/RAM/main/data/PolySites.geojson"
+let url_working = "https://raw.githubusercontent.com/PrattSAVI/RAM/main/data/Working.geojson"
+let url_retired = "https://raw.githubusercontent.com/PrattSAVI/RAM/main/data/Retired.geojson"
 
-//Use D3 to read JSON -> This might be an overkill. 
-//d3.json(url).then(function(data) {
-$.getJSON(url, function(data) {
-    $.getJSON('https://raw.githubusercontent.com/PrattSAVI/RAM/main/data/PointSites.geojson', function(point_data) {
+$.getJSON(url_retired, function(data_retired) {
+    $.getJSON(url_working, function(data_working) {
+        $.getJSON('https://raw.githubusercontent.com/PrattSAVI/RAM/main/data/PointSites.geojson', function(point_data) {
 
+            console.log(data_working);
+            console.log(data_retired);
+            console.log(point_data);
 
-        console.log(data);
-        console.log(point_data);
+            generatePanel(data_working.features, data_retired.features, point_data.features);
+            generatePolygon(data_working.features, data_retired.features, point_data, L);
 
-        generatePanel(data.features);
-        generatePolygon(data.features, point_data, L);
-
-
-        // ------------------------------ CLICKS & INTERACTION
-        // Watch clicks on #holder to fly to the bounds of the clicked element.
-        $('.place-list').click(function(d) {
-            let uid = $(this).attr("id")
-                // extract clicked on geometry
-            let filtered = data.features.filter(function(f) {
-                return f.properties.CRPID == uid
-            });
-            map.flyToBounds(L.geoJson(filtered).getBounds());
-        })
-
-        //Scroll to clicked Element
-        $('path').click(function(d) {
-            let uid = $(this).attr("id")
-            uid = `#holder #${uid}`;
-            $("#holder").scrollTo($(uid), {
-                axis: "y",
-                duration: 1500
-            })
-        });
-
-        //---------------------- POP-UP TEC ------------------------------
-        $('#button-holder').mouseenter(function() {
-            var position = $('#button-holder').offset();
-            var hoverup = $('<div />').appendTo('body');
-            hoverup.attr('id', 'hoverup');
-            hoverup.css({
-                'z-index': 100000000000000,
-                "width": "250px",
-                "border-radius": "8px",
-                "font-size": "12px",
-                "padding": "8px",
-                "position": 'absolute',
-                'background': "white",
-                "top": position.top + ($('#button-holder').height() / 2) - 50,
-                "left": position.left + $('#button-holder').width() + 30
-            })
-            hoverup.html("<p><strong>TEC Filters</strong><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque libero in lacinia ullamcorper. Donec libero metus, ultricies vel pharetra eu, dictum non nunc. In neque sem, venenatis non elit a, imperdiet tincidunt dui. Nullam quis consequat est. Quisque ullamcorper dui eu nibh tempus, ac tempus risus consequat. Sed eu lacinia ex. Aliquam congue nulla id sem laoreet iaculis.</p>")
-
-        })
-
-        ////---------------------- CHECKBOX TOGGLE ------------------
-        $('#button-holder').mouseleave(function() {
-            $("#hoverup").remove();
-        })
-
-        //---------------------- BUTTON INTERACTION -> Filtering
-        $(".change-detect").change(function() { //If change on button group
-            let btn_ids = [];
-            $(".btn-check").each(function() { // Get all ids in the button group
-                btn_ids.push(this.id);
-            });
-
-
-            //CHECKS BOXES HERE
-            let checks = [];
-            $(".form-check-input").each(function() { // Get all ids in the button group
-                checks.push({
-                    value: this.value,
-                    check: this.checked
-                })
-            });
-            console.log(checks)
-
-            let isfiltered = false;
-            checks.forEach(function(check) {
-                if (check.check === false) {
-                    isfiltered = true;
-                }
-            })
-
-            let checked_sites = [];
-            if (isfiltered) {
-                console.log("Filtered")
-                let temp = checks.filter(d => d.check === true)
-                console.log(temp)
-                checked_sites = data.features
-
-            } else {
-                checked_sites = data.features
-            }
-
-            // Iterate over to retrieve checked ones.
-            let all_checked = [];
-            btn_ids.forEach(function(b) {
-                if ($("#" + b).is(':checked') === true) {
-                    all_checked.push($("#" + b).attr("value"));
-                }
-            })
-
-            // Go over all checked columns (values) to check for true values
-            let filtered = []
-            if (all_checked.length > 0) { // If a button is clicked
-                all_checked.forEach(function(column) {
-                    let temp = checked_sites.filter(item => {
-                        if (item['properties'][column] == true) {
-                            return item;
-                        }
-                    });
-                    filtered = [...filtered, ...temp]
+            // ------------------------------ CLICKS & INTERACTION
+            // Watch clicks on #holder to fly to the bounds of the clicked element.
+            $('.place-list').click(function(d) {
+                let uid = $(this).attr("id")
+                    // extract clicked on geometry
+                let filtered = data.features.filter(function(f) {
+                    return f.properties.CRPID == uid
                 });
-                //Remove Duplicates
-                filtered = filtered.filter(function(elem, index, self) {
-                    return index === self.indexOf(elem);
+                map.flyToBounds(L.geoJson(filtered).getBounds());
+            })
+
+            //Scroll to clicked Element
+            $('path').click(function(d) {
+                let uid = $(this).attr("id")
+                uid = `#holder #${uid}`;
+                $("#holder").scrollTo($(uid), {
+                    axis: "y",
+                    duration: 1500
                 })
-            } else { // If no button is clicked, assign all data to filtered
-                filtered = checked_sites;
-            }
+            });
 
-            //console.log(filtered);
-            generatePolygon(filtered, point_data, L);
-            generatePanel(filtered);
-        })
+            //---------------------- POP-UP TEC ------------------------------
+            $('#button-holder').mouseenter(function() {
+                var position = $('#button-holder').offset();
+                var hoverup = $('<div />').appendTo('body');
+                hoverup.attr('id', 'hoverup');
+                hoverup.css({
+                    'z-index': 100000000000000,
+                    "width": "250px",
+                    "border-radius": "8px",
+                    "font-size": "12px",
+                    "padding": "8px",
+                    "position": 'absolute',
+                    'background': "white",
+                    "top": position.top + ($('#button-holder').height() / 2) - 50,
+                    "left": position.left + $('#button-holder').width() + 30
+                })
+                hoverup.html("<p><strong>TEC Filters</strong><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque libero in lacinia ullamcorper. Donec libero metus, ultricies vel pharetra eu, dictum non nunc. In neque sem, venenatis non elit a, imperdiet tincidunt dui. Nullam quis consequat est. Quisque ullamcorper dui eu nibh tempus, ac tempus risus consequat. Sed eu lacinia ex. Aliquam congue nulla id sem laoreet iaculis.</p>")
 
+            })
+
+            ////---------------------- CHECKBOX TOGGLE ------------------
+            $('#button-holder').mouseleave(function() {
+                $("#hoverup").remove();
+            })
+
+            //---------------------- BUTTON INTERACTION -> Filtering
+            $(".change-detect").change(function() { //If change on button group
+                let btn_ids = [];
+                $(".btn-check").each(function() { // Get all ids in the button group
+                    btn_ids.push(this.id);
+                });
+
+
+                //CHECKS BOXES HERE
+                let checks = [];
+                $(".form-check-input").each(function() { // Get all ids in the button group
+                    checks.push({
+                        value: this.value,
+                        check: this.checked
+                    })
+                });
+                console.log(checks)
+
+                let isfiltered = false;
+                checks.forEach(function(check) {
+                    if (check.check === false) {
+                        isfiltered = true;
+                    }
+                })
+
+                let checked_sites = [];
+                if (isfiltered) {
+                    console.log("Filtered")
+                    let temp = checks.filter(d => d.check === true)
+                    console.log(temp)
+                    checked_sites = data.features
+
+                } else {
+                    checked_sites = data.features
+                }
+
+                // Iterate over to retrieve checked ones.
+                let all_checked = [];
+                btn_ids.forEach(function(b) {
+                    if ($("#" + b).is(':checked') === true) {
+                        all_checked.push($("#" + b).attr("value"));
+                    }
+                })
+
+                // Go over all checked columns (values) to check for true values
+                let filtered = []
+                if (all_checked.length > 0) { // If a button is clicked
+                    all_checked.forEach(function(column) {
+                        let temp = checked_sites.filter(item => {
+                            if (item['properties'][column] == true) {
+                                return item;
+                            }
+                        });
+                        filtered = [...filtered, ...temp]
+                    });
+                    //Remove Duplicates
+                    filtered = filtered.filter(function(elem, index, self) {
+                        return index === self.indexOf(elem);
+                    })
+                } else { // If no button is clicked, assign all data to filtered
+                    filtered = checked_sites;
+                }
+
+                //console.log(filtered);
+                generatePolygon(filtered, point_data, L);
+                generatePanel(filtered);
+            })
+
+        });
     });
 });
