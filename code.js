@@ -5,7 +5,7 @@ let initial_zoom = 10;
 var map = L.map('map').setView(initial_position, initial_zoom);
 
 //let tileURL = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
-let tileURL = 'https://api.mapbox.com/styles/v1/eichners/cjp2020t41o7k2snzc9l82rpu/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZWljaG5lcnMiLCJhIjoiY2lrZzVneDI4MDAyZ3VkbTZmYWlyejUzayJ9.vEGckM-D3AjV4jXmdibXyw'
+let tileURL = 'https://api.mapbox.com/styles/v1/eichners/cjp2020t41o7k2snzc9l82rpu/tiles/512/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZWljaG5lcnMiLCJhIjoiY2lrZzVneDI4MDAyZ3VkbTZmYWlyejUzayJ9.vEGckM-D3AjV4jXmdibXyw'
 //https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}
 
 L.tileLayer(tileURL, {
@@ -66,7 +66,6 @@ function generatePanel(data1,data2,data3) {
         }
 
         if (f.properties.db === 'Completed Sites') {
-            console.log('yes')
             $("<div/>").appendTo('#holder')
                 .attr('class', 'place-list completed-site')
                 .attr('id' , uid )

@@ -77,6 +77,11 @@ h1 {
     cursor: pointer
 }
 
+.completed-site:hover {
+    color: var(--green)!important;
+    cursor: pointer
+}
+
 #hover-title {
     font-size: 12pt;
     font-weight: 700;
