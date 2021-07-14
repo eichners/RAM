@@ -43,26 +43,24 @@ function onEachFeature(feature, layer) {
 function generatePanel(data1,data2,data3) {
 
     const data = [...data1,...data2,...data3] // Merge Datasets
-    console.log( data );
 
     data.forEach(f => {
         // HTML elements
-        let uid = f.properties.CRPID;
         let name = f.properties.SiteName;
         let html_text = `<b>${name}</b><br>`;
-        //console.log(f.properties.db)
+        let uid = f.properties.CRPID;
 
         //Assign seperate class's for working and retired sites
         if (f.properties.db === 'working sites') {
             // Create new DIV using JQuery
             $("<div/>").appendTo('#holder')
-                .attr('id', uid)
                 .attr('class', 'place-list working-site')
+                .attr('id' , uid )
                 .html(html_text);
         } else {
             $("<div/>").appendTo('#holder')
-                .attr('id', uid)
                 .attr('class', 'place-list retired-site')
+                .attr('id' , uid )
                 .html(html_text);
         }
     })
@@ -124,14 +122,11 @@ function generatePolygon(data_working, data_retired, point_data, L) {
 
 let url_working = "https://raw.githubusercontent.com/PrattSAVI/RAM/main/data/Working.geojson"
 let url_retired = "https://raw.githubusercontent.com/PrattSAVI/RAM/main/data/Retired.geojson"
+let url_completed = 'https://raw.githubusercontent.com/PrattSAVI/RAM/main/data/Completed.geojson'
 
 $.getJSON(url_retired, function(data_retired) {
     $.getJSON(url_working, function(data_working) {
-        $.getJSON('https://raw.githubusercontent.com/PrattSAVI/RAM/main/data/PointSites.geojson', function(point_data) {
-
-            console.log(data_working);
-            console.log(data_retired);
-            console.log(point_data);
+        $.getJSON( url_completed, function(point_data) {
 
             generatePanel(data_working.features, data_retired.features, point_data.features);
             generatePolygon(data_working.features, data_retired.features, point_data, L);
@@ -177,48 +172,19 @@ $.getJSON(url_retired, function(data_retired) {
 
             })
 
-            ////---------------------- CHECKBOX TOGGLE ------------------
             $('#button-holder').mouseleave(function() {
                 $("#hoverup").remove();
             })
 
             //---------------------- BUTTON INTERACTION -> Filtering
-            $(".change-detect").change(function() { //If change on button group
+            $(".change-detect").change(function() { //If change on button groups -> Both checks and Buttons
                 let btn_ids = [];
                 $(".btn-check").each(function() { // Get all ids in the button group
                     btn_ids.push(this.id);
                 });
 
-
-                //CHECKS BOXES HERE
-                let checks = [];
-                $(".form-check-input").each(function() { // Get all ids in the button group
-                    checks.push({
-                        value: this.value,
-                        check: this.checked
-                    })
-                });
-                console.log(checks)
-
-                let isfiltered = false;
-                checks.forEach(function(check) {
-                    if (check.check === false) {
-                        isfiltered = true;
-                    }
-                })
-
-                let checked_sites = [];
-                if (isfiltered) {
-                    console.log("Filtered")
-                    let temp = checks.filter(d => d.check === true)
-                    console.log(temp)
-                    checked_sites = data.features
-
-                } else {
-                    checked_sites = data.features
-                }
-
-                // Iterate over to retrieve checked ones.
+                //-----------   BUTTONS HERE
+                // Iterate to retrieve pressed ones.
                 let all_checked = [];
                 btn_ids.forEach(function(b) {
                     if ($("#" + b).is(':checked') === true) {
@@ -227,27 +193,92 @@ $.getJSON(url_retired, function(data_retired) {
                 })
 
                 // Go over all checked columns (values) to check for true values
-                let filtered = []
+                // ---- Filter Working Sites
+                let filtered_working = []
                 if (all_checked.length > 0) { // If a button is clicked
                     all_checked.forEach(function(column) {
-                        let temp = checked_sites.filter(item => {
+                        let temp = data_working.features.filter(item => {
                             if (item['properties'][column] == true) {
                                 return item;
                             }
                         });
-                        filtered = [...filtered, ...temp]
+                        filtered_working = [...filtered_working, ...temp]
                     });
                     //Remove Duplicates
-                    filtered = filtered.filter(function(elem, index, self) {
+                    filtered_working = filtered_working.filter(function(elem, index, self) {
                         return index === self.indexOf(elem);
                     })
-                } else { // If no button is clicked, assign all data to filtered
-                    filtered = checked_sites;
+                }else { // If no button is clicked, assign all data to filtered
+                    filtered_working = data_working.features;
                 }
 
-                //console.log(filtered);
-                generatePolygon(filtered, point_data, L);
-                generatePanel(filtered);
+                // ---- Filter Retired Sites
+                let filtered_retired = []
+                if (all_checked.length > 0) { // If a button is clicked
+                    all_checked.forEach(function(column) {
+                        let temp = data_retired.features.filter(item => {
+                            if (item['properties'][column] == true) {
+                                return item;
+                            }
+                        });
+                        filtered_retired = [...filtered_retired, ...temp]
+                    });
+                    //Remove Duplicates
+                    filtered_retired = filtered_retired.filter(function(elem, index, self) {
+                        return index === self.indexOf(elem);
+                    })
+                }else { // If no button is clicked, assign all data to filtered
+                    filtered_retired = data_retired.features;
+                }
+
+                //CHECKS FILTERING
+
+                //-------------CHECKS BOXES HERE
+                let checks = [];
+                $(".form-check-input").each(function() { // Get all ids in the button group
+                    checks.push({
+                        value: this.value,
+                        check: this.checked
+                    })
+                });
+
+                let checked_working = []
+                let checked_retired = []
+                let checked_points = []
+                checks.forEach(function(check){
+                    
+                    // -- For Working Sites
+                    if( check.value === "Working Sites"){
+                        if (check.check === true){
+                            checked_working = filtered_working;
+                        }else{
+                            checked_working = [];
+                        }
+                    }
+
+                    // -- For Retired Sites
+                    if( check.value === "Retired Sites"){
+                        if (check.check === true){
+                            checked_retired = filtered_retired;
+                        }else{
+                            checked_retired = [];
+                        }
+                    }
+
+                    // -- For Completed Sites
+                    if( check.value === "Completed Sites"){
+                        if (check.check === true){
+                            checked_completed = point_data;
+                        }else{
+                            checked_completed = [];
+                        }
+                    }
+
+                })
+
+                generatePanel(filtered_working, filtered_retired, point_data.features);
+                generatePolygon(checked_working, checked_retired , checked_completed, L);
+    
             })
 
         });
