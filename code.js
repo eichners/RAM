@@ -44,22 +44,31 @@ function generatePanel(data1,data2,data3) {
 
     const data = [...data1,...data2,...data3] // Merge Datasets
 
+    console.log( data3 )
     data.forEach(f => {
-        // HTML elements
+
         let name = f.properties.SiteName;
         let html_text = `<b>${name}</b><br>`;
         let uid = f.properties.CRPID;
 
-        //Assign seperate class's for working and retired sites
+        //Assign seperate class's for working/ retired / completed sites
         if (f.properties.db === 'working sites') {
-            // Create new DIV using JQuery
             $("<div/>").appendTo('#holder')
                 .attr('class', 'place-list working-site')
                 .attr('id' , uid )
                 .html(html_text);
-        } else {
+        } 
+        if (f.properties.db === 'retired') {
             $("<div/>").appendTo('#holder')
                 .attr('class', 'place-list retired-site')
+                .attr('id' , uid )
+                .html(html_text);
+        }
+
+        if (f.properties.db === 'Completed Sites') {
+            console.log('yes')
+            $("<div/>").appendTo('#holder')
+                .attr('class', 'place-list completed-site')
                 .attr('id' , uid )
                 .html(html_text);
         }
