@@ -2,7 +2,11 @@
     --orange: #f4a261;
     --blue: #62A4D6;
     --green: #93C15C;
-    --hh: 70px;
+    --hh: 75px;
+}
+
+p {
+    margin-bottom: 5px;
 }
 
 
@@ -55,13 +59,12 @@ html {
 }
 
 .r {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 8px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding: 5px;
 }
 
 h1 {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 28pt;
     color: #5CAA46;
 }
@@ -72,6 +75,7 @@ h1 {
     display: flex;
     align-items: center;
     padding-left: 15px;
+    padding-top: 5px;
 }
 
 
@@ -106,11 +110,12 @@ h1 {
 }
 
 #left-panel {
+    padding-left: 15px;
     position: absolute;
     width: 25%;
     max-height: calc(100% - var(--hh));
     box-sizing: border-box;
-    min-width: 225px;
+    min-width: 250px;
     display: flex;
     flex-direction: column;
 }
@@ -133,11 +138,6 @@ h1 {
     margin: 5px 5px 5px 5px;
     cursor: pointer;
     color: #666
-}
-
-#active-poly {
-    stroke: red !important;
-    stroke-width: 3px !important;
 }
 
 
@@ -169,11 +169,18 @@ h1 {
     color: #333;
     background-color: white;
     border: none;
-    padding: 1px
+    padding: 1px;
+    opacity: 0.8;
 }
 
 .btn:hover {
-    background-color: lightgrey;
+    opacity: 1;
+    background-color: white;
+    transition: opacity 0.5s;
+}
+
+.btn-check:checked+.btn-outline-primary {
+    background-color: white!important;
 }
 
 .btn-primary:hover {
@@ -190,14 +197,30 @@ h1 {
 #site-list-btn {
     height: 40px;
     width: 100%;
-    padding: 5px 15px;
     text-align: left;
     font-size: 14pt;
 }
 
 .site-title {
-    color: #F08D02!important;
+    color: #333!important;
+    font-size: 11pt;
     cursor: pointer
+}
+
+.site-title:hover {
+    color: var(--orange)!important;
+}
+
+.btn .btn-primary .collapsed {
+    color: #333!important;
+}
+
+.btn .btn-primary {
+    color: var(--orange)!important;
+}
+
+hr {
+    margin: 2px 0px;
 }
 
 .collapse-nav-button:before {
@@ -215,4 +238,58 @@ h1 {
 
 #button-holder {
     max-width: 300px;
+}
+
+#hoverup {
+    z-index: 10;
+    width: 400px;
+    border-radius: 8px;
+    font-size: 12px;
+    padding: 8px;
+    position: absolute;
+    background: white;
+    visibility: hidden;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.grid-item {
+    display: grid;
+    grid-template-columns: 0.1fr 1fr;
+    padding: 1px;
+}
+
+.tec-logo {
+    float: left;
+    margin-right: 5px;
+}
+
+.tec-text {
+    color: #A1A1A0;
+    margin-top: 5px;
+    margin-left: 5px;
+    float: left;
+    font-weight: 400;
+    font-size: 8px;
+}
+
+#tec-title {
+    font-weight: 700;
+    color: #333
+}
+
+input[type=text] {
+    height: 40px;
+    border: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+input[type=text]:focus {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #e7e7e7;
 }

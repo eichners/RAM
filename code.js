@@ -162,6 +162,7 @@ $.getJSON(url_retired, function(data_retired) {
             generatePanel(data_working.features, data_retired.features, point_data.features);
             generatePolygon(data_working.features, data_retired.features, point_data, L);
 
+            console.log(point_data)
             let checked_working = data_working.features;
             let checked_retired = data_retired.features;
             let checked_points = point_data.features;
@@ -206,28 +207,32 @@ $.getJSON(url_retired, function(data_retired) {
                 })
             });
 
+            // If clicked on the map on empty space
+            /*
+            $('path, #map').click( function(){
+                $(this).attr('class')
+            })
+            */
+            
+
+
             //---------------------- POP-UP TEC ------------------------------
             $('#button-holder').mouseenter(function() {
+                
                 var position = $('#button-holder').offset();
-                var hoverup = $('<div />').appendTo('body');
-                hoverup.attr('id', 'hoverup');
+                var hoverup = $("#hoverup")
                 hoverup.css({
-                    'z-index': 100000000000000,
-                    "width": "250px",
-                    "border-radius": "8px",
-                    "font-size": "12px",
-                    "padding": "8px",
-                    "position": 'absolute',
-                    'background': "white",
+                    "visibility":"visible",
                     "top": position.top + ($('#button-holder').height() / 2) - 50,
                     "left": position.left + $('#button-holder').width() + 30
                 })
-                hoverup.html("<p><strong>TEC Filters</strong><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque libero in lacinia ullamcorper. Donec libero metus, ultricies vel pharetra eu, dictum non nunc. In neque sem, venenatis non elit a, imperdiet tincidunt dui. Nullam quis consequat est. Quisque ullamcorper dui eu nibh tempus, ac tempus risus consequat. Sed eu lacinia ex. Aliquam congue nulla id sem laoreet iaculis.</p>")
-
             })
 
             $('#button-holder').mouseleave(function() {
-                $("#hoverup").remove();
+                var hoverup = $("#hoverup")
+                hoverup.css({
+                    "visibility":"hidden",
+                })
             })
 
             //---------------------- BUTTON INTERACTION -> Filtering
@@ -285,6 +290,27 @@ $.getJSON(url_retired, function(data_retired) {
                     filtered_retired = data_retired.features;
                 }
 
+                // ---- Filter Completed Sites
+                // Point Data has a different column naming.
+                let filtered_completed = []
+                if (all_checked.length > 0) { // If a button is clicked
+                    all_checked.forEach(function(column) {
+                        let temp = point_data.features.filter(item => {
+                            if (item['properties']["Primary TEC"] == column) {
+                                return item;
+                            }
+                        });
+                        filtered_completed = [...filtered_completed, ...temp]
+                    });
+                    //Remove Duplicates
+                    filtered_completed = filtered_completed.filter(function(elem, index, self) {
+                        return index === self.indexOf(elem);
+                    })
+
+                }else { // If no button is clicked, assign all data to filtered
+                    filtered_completed = point_data.features;
+                }
+
                 //CHECKS FILTERING
 
                 //-------------CHECKS BOXES HERE
@@ -322,7 +348,7 @@ $.getJSON(url_retired, function(data_retired) {
                     // -- For Completed Sites
                     if( check.value === "Completed Sites"){
                         if (check.check === true){
-                            checked_completed = point_data;
+                            checked_completed = filtered_completed;
                         }else{
                             checked_completed = [];
                         }
@@ -330,7 +356,7 @@ $.getJSON(url_retired, function(data_retired) {
 
                 })
 
-                generatePanel(filtered_working, filtered_retired, point_data.features);
+                generatePanel(filtered_working, filtered_retired, filtered_completed);
                 generatePolygon(checked_working, checked_retired , checked_completed, L);
     
             })

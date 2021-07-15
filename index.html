@@ -36,7 +36,7 @@
 
     <!--Header-->
     <div id="header" style="border-bottom: 1px solid #5CAA46;">
-        <h1>HUDSON-RARITAN ESTURY <b>Restoration Activity Map</b></h1>
+        <h1><span style="font-weight:400">HUDSON-RARITAN ESTURY</span> <span style="font-weight:700">   Restoration Activity Map</span></h1>
     </div>
 
     <!--Left Side Panel-->
@@ -44,20 +44,20 @@
 
         <div class="r">
             <!--TEC BUTTONS-->
-            <span style="font-weight:bold;font-size: 18pt;color:#444">Filters</span><br>
-            <span style="font-size: 14pt;font-weight:bold;color:#666">Target Ecosystem Characteristics</span><br>
-            <span style="font-size: 12pt;font-weight:bold;color:#999">Filter by TEC</span>
+            <span style="font-weight:bold;font-size: 14pt;color:#444">Filters</span><br>
+            <span style="font-size: 11pt;font-weight:bold;color:#666">Target Ecosystem Characteristics</span><br>
+            <span style="font-size: 8pt;font-weight:bold;color:#999">Filter by TEC</span>
         </div>
         <div class="r">
             <div id="button-holder">
                 <input type="checkbox" class="btn-check change-detect" id="btncheck1" value="STECAccess" autocomplete="off">
                 <label class="btn btn-outline-primary" for="btncheck1"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/STEC_Acess.svg" /></label>
 
-                <input type="checkbox" class="btn-check change-detect" id="btncheck1" value="STECAcquisition" autocomplete="off">
+                <input type="checkbox" class="btn-check change-detect" id="btncheck13" value="STECAcquisition" autocomplete="off">
                 <label class="btn btn-outline-primary" for="btncheck1"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_Acquisition.svg" /></label>
 
                 <input type="checkbox" class="btn-check change-detect" id="btncheck2" value="STECAquaticHab" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btncheck2"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
+                <label class="btn btn-outline-primary" for="btncheck2"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_CoastalMaritimeForrest.svg" /></label>
 
                 <input type="checkbox" class="btn-check change-detect" id="btncheck3" value="STECCoastWet" autocomplete="off">
                 <label class="btn btn-outline-primary" for="btncheck3"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_wetlands.svg" /></label>
@@ -69,10 +69,10 @@
                 <label class="btn btn-outline-primary" for="btncheck5"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_CoastalMaritimeForrest.svg" /></label>
 
                 <input type="checkbox" class="btn-check change-detect" id="btncheck6" value="STECFreshWet" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btncheck6"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
+                <label class="btn btn-outline-primary" for="btncheck6"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_HabitatWaterbirds.svg" /></label>
 
                 <input type="checkbox" class="btn-check change-detect" id="btncheck7" value="STECIslands" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btncheck7"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
+                <label class="btn btn-outline-primary" for="btncheck7"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_HabitatWaterbirds.svg" /></label>
 
                 <input type="checkbox" class="btn-check change-detect" id="btncheck8" value="STECOyster" autocomplete="off">
                 <label class="btn btn-outline-primary" for="btncheck8"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_OysterReefs.svg" /></label>
@@ -90,11 +90,12 @@
                 <label class="btn btn-outline-primary" for="btncheck12"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_Enclosed_and_confined_waters.svg" /></label>
             </div>
         </div>
+        <hr>
 
         <div class="r">
             <!--CATEGORY BUTTONS-->
-            <span style="font-weight:bold;font-size: 18pt;color:#444">Restoration Projects</span><br>
-            <span style="font-size: 14pt;font-weight:bold;color:#666">Filter by site category</span>
+            <span style="font-size: 11pt;font-weight:bold;color:#666">Restoration Projects</span><br>
+            <span style="font-size: 8pt;font-weight:bold;color:#999">Filter by site category</span>
         </div>
         <div class="r">
             <div class="form-check">
@@ -122,7 +123,108 @@
 
         <div class="collapse" id="holder"></div>
 
+
+        <hr>
+        <div class="search-container">
+            <input id="searcher" type='text'>
+        </div>
+
     </div>
+
+    <!--Hover TEC Filters-->
+    <div id="hoverup">
+        <p><strong>ABOUT THE TARGET ECOSYSTEM CHARACERSTICS</strong></p>
+        <div class="grid-container">
+
+            <div class="grid-item">
+                <div class="tec-logo"> <img style="width:22px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/STEC_Acess.svg" /> </div>
+                <div class="tec-text">
+                    <span id="tec-title">Public Access</span><br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, vero inventore illo atque quo sit recusandae.
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="tec-logo"> <img style="width:22px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_Acquisition.svg" /> </div>
+                <div class="tec-text">
+                    <span id="tec-title">Acquistion</span>
+                    <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, vero inventore illo atque quo sit recusandae.
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="tec-logo"> <img style="width:22px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_CoastalMaritimeForrest.svg" /> </div>
+                <div class="tec-text">
+                    <span id="tec-title">Habitat for Fish, Crab and Lobster</span><br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, vero inventore illo atque quo sit recusandae.
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="tec-logo"> <img style="width:22px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_wetlands.svg" /> </div>
+                <div class="tec-text">
+                    <span id="tec-title">Wetlands</span>
+                    <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, vero inventore illo atque quo sit recusandae.
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="tec-logo"> <img style="width:22px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/STEC_Eelgrass.svg" /> </div>
+                <div class="tec-text">
+                    <span id="tec-title">Eel Grass Beds</span>
+                    <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, vero inventore illo atque quo sit recusandae.
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="tec-logo"> <img style="width:22px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_CoastalMaritimeForrest.svg" /> </div>
+                <div class="tec-text">
+                    <span id="tec-title">Coastal and Maritime Forests</span>
+                    <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, vero inventore illo atque quo sit recusandae.
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="tec-logo"> <img style="width:22px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_HabitatWaterbirds.svg" /> </div>
+                <div class="tec-text">
+                    <span id="tec-title">Habitat for Waterbirds</span>
+                    <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, vero inventore illo atque quo sit recusandae.
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="tec-logo"> <img style="width:22px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_OysterReefs.svg" /> </div>
+                <div class="tec-text">
+                    <span id="tec-title">Oyster Reefs</span>
+                    <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, vero inventore illo atque quo sit recusandae.
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="tec-logo"> <img style="width:22px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/STEC_Sediments.svg" /> </div>
+                <div class="tec-text">
+                    <span id="tec-title">Sediments</span>
+                    <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, vero inventore illo atque quo sit recusandae.
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="tec-logo"> <img style="width:22px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_ShallowsAndShorelines.svg" /> </div>
+                <div class="tec-text">
+                    <span id="tec-title">Shorelines and Shallows</span>
+                    <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, vero inventore illo atque quo sit recusandae.
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="tec-logo"> <img style="width:22px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_tributaries.svg" /> </div>
+                <div class="tec-text">
+                    <span id="tec-title">Tributary Connections</span>
+                    <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, vero inventore illo atque quo sit recusandae.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
     <!-- Right Side Panel-->
     <div class="panel" id="right-panel">
