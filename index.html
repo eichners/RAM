@@ -34,107 +34,104 @@
 
 <body>
 
+    <!--Header-->
+    <div id="header" style="border-bottom: 1px solid #5CAA46;">
+        <h1>HUDSON-RARITAN ESTURY <b>Restoration Activity Map</b></h1>
+    </div>
+
+    <!--Left Side Panel-->
+    <div class="panel" id="left-panel">
+
+        <div class="r">
+            <!--TEC BUTTONS-->
+            <span style="font-weight:bold;font-size: 18pt;color:#444">Filters</span><br>
+            <span style="font-size: 14pt;font-weight:bold;color:#666">Target Ecosystem Characteristics</span><br>
+            <span style="font-size: 12pt;font-weight:bold;color:#999">Filter by TEC</span>
+        </div>
+        <div class="r">
+            <div id="button-holder">
+                <input type="checkbox" class="btn-check change-detect" id="btncheck1" value="STECAccess" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck1"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/STEC_Acess.svg" /></label>
+
+                <input type="checkbox" class="btn-check change-detect" id="btncheck1" value="STECAcquisition" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck1"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_Acquisition.svg" /></label>
+
+                <input type="checkbox" class="btn-check change-detect" id="btncheck2" value="STECAquaticHab" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck2"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
+
+                <input type="checkbox" class="btn-check change-detect" id="btncheck3" value="STECCoastWet" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck3"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_wetlands.svg" /></label>
+
+                <input type="checkbox" class="btn-check change-detect" id="btncheck4" value="STECEelgrass" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck4"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/STEC_Eelgrass.svg" /></label>
+
+                <input type="checkbox" class="btn-check change-detect" id="btncheck5" value="STECForests" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck5"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_CoastalMaritimeForrest.svg" /></label>
+
+                <input type="checkbox" class="btn-check change-detect" id="btncheck6" value="STECFreshWet" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck6"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
+
+                <input type="checkbox" class="btn-check change-detect" id="btncheck7" value="STECIslands" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck7"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
+
+                <input type="checkbox" class="btn-check change-detect" id="btncheck8" value="STECOyster" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck8"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_OysterReefs.svg" /></label>
+
+                <input type="checkbox" class="btn-check change-detect" id="btncheck9" value="STECSediment" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck9"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/STEC_Sediments.svg" /></label>
+
+                <input type="checkbox" class="btn-check change-detect" id="btncheck10" value="STECShore" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck10"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_ShallowsAndShorelines.svg" /></label>
+
+                <input type="checkbox" class="btn-check change-detect" id="btncheck11" value="STECTributary" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck11"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_tributaries.svg" /></label>
+
+                <input type="checkbox" class="btn-check change-detect" id="btncheck12" value="STECWater" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck12"><img style="width:35px" src="https://raw.githubusercontent.com/PrattSAVI/RAM/main/img/icons/TEC_Enclosed_and_confined_waters.svg" /></label>
+            </div>
+        </div>
+
+        <div class="r">
+            <!--CATEGORY BUTTONS-->
+            <span style="font-weight:bold;font-size: 18pt;color:#444">Restoration Projects</span><br>
+            <span style="font-size: 14pt;font-weight:bold;color:#666">Filter by site category</span>
+        </div>
+        <div class="r">
+            <div class="form-check">
+                <input class="form-check-input change-detect" type="checkbox" value="Working Sites" id="flexCheckChecked" checked>
+                <label class="form-check-label change-detect" for="flexCheckDefault"><span class="working-site" style="font-size: 10pt;font-weight:bold;color:#666">Opportunities</span></label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input change-detect" type="checkbox" value="Retired Sites" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked"><span class="retired-site" style="font-size: 10pt;font-weight:bold;color:#666">Retired Sites</span></label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input change-detect" type="checkbox" value="Completed Sites" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked"><span class="retired-site" style="font-size: 10pt;font-weight:bold;color:#666">Completed Projects</span></label>
+            </div>
+        </div>
+
+        <hr>
+        <!--Collapsable Site List Button-->
+        <button id="site-list-btn" class="btn btn-primary collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#holder" aria-expanded="false" aria-controls="holder">
+                <div style="display:flex;justify-content: space-between;" class="site-title">                    
+                    <span ><strong>Restoration Site List</strong></span>
+                    <span class="collapse-nav-button"></span>
+                </div>
+            </button>
+
+        <div class="collapse" id="holder"></div>
+
+    </div>
+
+    <!-- Right Side Panel-->
+    <div class="panel" id="right-panel">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, voluptate ipsa? Sint fuga illum incidunt dolor cum nam nisi magni suscipit repellendus, voluptatibus facere amet assumenda, necessitatibus molestias. Soluta, temporibus.</p>
+    </div>
+
+    <!-- Map is at the Background-->
     <div class="full-site" id="map"></div>
 
-
-    <div class="container h-100 m-0 p-0">
-
-        <div class="row p-3 pb-1" id="header" style="border-bottom: 1px solid #5CAA46;">
-            <h1>HUDSON-RARITAN ESTURY <b>Restoration Activity Map</b></h1>
-        </div>
-
-        <div class="row">
-
-            <div class="col-3 p-0 panel">
-
-                <div class="row mt-2">
-                    <!--TEC BUTTONS-->
-                    <span style="font-weight:bold;font-size: 18pt;color:#444">Filters</span>
-                    <span style="font-size: 14pt;font-weight:bold;color:#666">Target Ecosystem Characteristics</span>
-                    <span style="font-size: 12pt;font-weight:bold;color:#999">Filter by TEC</span>
-                </div>
-                <div class="row mt-2">
-                    <div id="button-holder">
-                        <input type="checkbox" class="btn-check change-detect" id="btncheck1" value="STECAccess" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck1"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
-
-                        <input type="checkbox" class="btn-check change-detect" id="btncheck2" value="STECAquaticHab" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck2"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
-
-                        <input type="checkbox" class="btn-check change-detect" id="btncheck3" value="STECCoastWet" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck3"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
-
-                        <input type="checkbox" class="btn-check change-detect" id="btncheck4" value="STECEelgrass" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck4"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
-
-                        <input type="checkbox" class="btn-check change-detect" id="btncheck5" value="STECForests" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck5"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
-
-                        <input type="checkbox" class="btn-check change-detect" id="btncheck6" value="STECFreshWet" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck6"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
-
-                        <input type="checkbox" class="btn-check change-detect" id="btncheck7" value="STECIslands" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck7"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
-
-                        <input type="checkbox" class="btn-check change-detect" id="btncheck8" value="STECOyster" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck8"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
-
-                        <input type="checkbox" class="btn-check change-detect" id="btncheck9" value="STECSediment" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck9"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
-
-                        <input type="checkbox" class="btn-check change-detect" id="btncheck10" value="STECShore" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck10"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
-
-                        <input type="checkbox" class="btn-check change-detect" id="btncheck11" value="STECTributary" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck11"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
-
-                        <input type="checkbox" class="btn-check change-detect" id="btncheck12" value="STECWater" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck12"><img style="width:35px" src="https://www.tutorialspoint.com/latest/inter-process-communication.png " /></label>
-                    </div>
-                </div>
-                <hr>
-
-                <div class="row mt-2">
-                    <!--CATEGORY BUTTONS-->
-                    <span style="font-weight:bold;font-size: 18pt;color:#444">Restoration Projects</span>
-                    <span style="font-size: 14pt;font-weight:bold;color:#666">Filter by site category</span>
-                </div>
-                <div class="row pl-2 mt-2">
-                    <div class="form-check">
-                        <input class="form-check-input change-detect" type="checkbox" value="Working Sites" id="flexCheckChecked" checked>
-                        <label class="form-check-label change-detect" for="flexCheckDefault"><span class="working-site" style="font-size: 10pt;font-weight:bold;color:#666">Opportunities</span></label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input change-detect" type="checkbox" value="Retired Sites" id="flexCheckChecked" checked>
-                        <label class="form-check-label" for="flexCheckChecked"><span class="retired-site" style="font-size: 10pt;font-weight:bold;color:#666">Retired Sites</span></label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input change-detect" type="checkbox" value="Completed Sites" id="flexCheckChecked" checked>
-                        <label class="form-check-label" for="flexCheckChecked"><span class="retired-site" style="font-size: 10pt;font-weight:bold;color:#666">Completed Projects</span></label>
-                    </div>
-                </div>
-
-                <hr>
-                <!--Collapsable Site List-->
-                <button id="site-list-btn" class="btn btn-primary collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    <div style="display:flex;justify-content: space-between;" class="site-title">                    
-                        <span ><strong>Restoration Site List</strong></span>
-                        <span class="collapse-nav-button"></span>
-                    </div>
-                </button>
-                <div class="collapse" id="collapseExample">
-                    <div id="holder"></div>
-                </div>
-
-            </div>
-
-            <div class="col-3 p-0 ms-auto panel">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, voluptate ipsa? Sint fuga illum incidunt dolor cum nam nisi magni suscipit repellendus, voluptatibus facere amet assumenda, necessitatibus molestias. Soluta, temporibus.</p>
-            </div>
-
-
-        </div>
-    </div>
 </body>
 
 <script type="text/javascript" src="code.js"></script>

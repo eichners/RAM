@@ -44,7 +44,6 @@ function generatePanel(data1,data2,data3) {
 
     const data = [...data1,...data2,...data3] // Merge Datasets
 
-    console.log( data3 )
     data.forEach(f => {
 
         let name = f.properties.SiteName;
@@ -124,8 +123,32 @@ function generatePolygon(data_working, data_retired, point_data, L) {
     let pointLayer = L.geoJSON(point_data, {
         pointToLayer: function(feature, latlng) {
             return L.circleMarker(latlng, pointstyle);
-        }
+        },
+        style:style,
+        onEachFeature: onEachFeature
     }).addTo(map);
+}
+
+//Right panel Conent will go here.
+function fillRigthPanel(filtered){
+    console.log( filtered[0] )
+    props = filtered[0].properties
+    panel = $("#right-panel")
+    panel.html( `<div> 
+                    <h2>${props.SiteName} </h2>
+                    <p>${props.History}</p>
+                    <p>${props.AcquisitionCat}</p>
+                    <p>${props.Acreage}</p>
+    
+                </div>` )
+}
+
+function emptyRigthPanel(){
+    panel = $("#right-panel")
+    panel.html( `<div> 
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque debitis facilis voluptatibus sunt, quo magni possimus perferendis dolorem. Aut eum quo praesentium eligendi iusto fugit culpa doloremque a labore et.
+                </div>` )
+
 }
 
 let url_working = "https://raw.githubusercontent.com/PrattSAVI/RAM/main/data/Working.geojson"
@@ -139,20 +162,43 @@ $.getJSON(url_retired, function(data_retired) {
             generatePanel(data_working.features, data_retired.features, point_data.features);
             generatePolygon(data_working.features, data_retired.features, point_data, L);
 
+            let checked_working = data_working.features;
+            let checked_retired = data_retired.features;
+            let checked_points = point_data.features;
+
             // ------------------------------ CLICKS & INTERACTION
             // Watch clicks on #holder to fly to the bounds of the clicked element.
             $('.place-list').click(function(d) {
                 let uid = $(this).attr("id")
-                    // extract clicked on geometry
-                let filtered = data.features.filter(function(f) {
+                
+                // extract clicked on geometry
+                let filtered = [...checked_working,...checked_retired,...checked_points].filter(function(f) {
                     return f.properties.CRPID == uid
                 });
-                map.flyToBounds(L.geoJson(filtered).getBounds());
+
+                fillRigthPanel(filtered);
+
+                active_polygon = $(`#map #${uid}` )
+                //active_polygon.attr("id" , `${uid} active-poly`)
+                
+                map.setView( L.geoJson(filtered).getBounds().getCenter() , 12); // Zoom to point
             })
 
             //Scroll to clicked Element
+            //Check after fixing the right panel
             $('path').click(function(d) {
+
+                //Zoom to clicked polygon.
                 let uid = $(this).attr("id")
+
+                let filtered = [...checked_working,...checked_retired,...checked_points].filter(function(f) {
+                    return f.properties.CRPID == uid
+                });
+
+                fillRigthPanel(filtered)
+
+                map.setView( L.geoJson(filtered).getBounds().getCenter() , 12);
+
                 uid = `#holder #${uid}`;
                 $("#holder").scrollTo($(uid), {
                     axis: "y",
@@ -250,9 +296,9 @@ $.getJSON(url_retired, function(data_retired) {
                     })
                 });
 
-                let checked_working = []
-                let checked_retired = []
-                let checked_points = []
+                checked_working = []
+                checked_retired = []
+                checked_points = []
                 checks.forEach(function(check){
                     
                     // -- For Working Sites
@@ -292,3 +338,4 @@ $.getJSON(url_retired, function(data_retired) {
         });
     });
 });
+

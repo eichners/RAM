@@ -5,30 +5,59 @@
     --hh: 70px;
 }
 
+
+/*Import Tisa Sans*/
+
+@import url("https://p.typekit.net/p.css?s=1&k=mat4asz&ht=tk&f=16790.16791.16794.16801&a=10393746&app=typekit&e=css");
+@font-face {
+    font-family: "ff-tisa-sans-web-pro";
+    src: url("https://use.typekit.net/af/6dd34d/00000000000000003b9b0796/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"), url("https://use.typekit.net/af/6dd34d/00000000000000003b9b0796/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"), url("https://use.typekit.net/af/6dd34d/00000000000000003b9b0796/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+    font-display: auto;
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "ff-tisa-sans-web-pro";
+    src: url("https://use.typekit.net/af/ee7efe/00000000000000003b9b0797/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff2"), url("https://use.typekit.net/af/ee7efe/00000000000000003b9b0797/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff"), url("https://use.typekit.net/af/ee7efe/00000000000000003b9b0797/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("opentype");
+    font-display: auto;
+    font-style: italic;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "ff-tisa-sans-web-pro";
+    src: url("https://use.typekit.net/af/30ad0e/00000000000000003b9b0793/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff2"), url("https://use.typekit.net/af/30ad0e/00000000000000003b9b0793/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff"), url("https://use.typekit.net/af/30ad0e/00000000000000003b9b0793/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("opentype");
+    font-display: auto;
+    font-style: italic;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "ff-tisa-sans-web-pro";
+    src: url("https://use.typekit.net/af/6f55e9/00000000000000003b9b0792/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"), url("https://use.typekit.net/af/6f55e9/00000000000000003b9b0792/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"), url("https://use.typekit.net/af/6f55e9/00000000000000003b9b0792/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+    font-display: auto;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.tk-ff-tisa-sans-web-pro {
+    font-family: "ff-tisa-sans-web-pro", sans-serif;
+}
+
 body,
 html {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "ff-tisa-sans-web-pro", sans-serif;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     max-height: 100vh !important;
     min-height: 100vh !important;
-    overflow-y: auto;
 }
 
-.container {
-    max-width: 100%;
-    margin: 0px;
-    padding: 0px;
-}
-
-.row {
-    margin: 0px!important;
-    padding: 0px!important;
-}
-
-.col {
-    margin: 0px!important;
-    padding: 0px!important;
+.r {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 8px;
 }
 
 h1 {
@@ -39,25 +68,64 @@ h1 {
 
 #header {
     height: var(--hh) !important;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
 }
+
+
+/*Map at the background*/
 
 .full-site {
     position: absolute;
     top: var(--hh);
     left: 0px;
-    z-index: -1;
+    z-index: 0;
     width: 100%;
     height: calc(100% - var(--hh));
     padding: 0px;
 }
 
+
+/*Expanding Section*/
+
 #holder {
+    position: relative;
+    max-height: inherit;
     margin-top: 15px;
     padding: 5px 5px 5px 5px;
-    height: 100%;
     overflow-y: scroll;
     border-top: 1px solid rgba(0, 0, 0, 0.2);
+    flex-grow: 1;
 }
+
+.panel {
+    background: white;
+    z-index: 1;
+}
+
+#left-panel {
+    position: absolute;
+    width: 25%;
+    max-height: calc(100% - var(--hh));
+    box-sizing: border-box;
+    min-width: 225px;
+    display: flex;
+    flex-direction: column;
+}
+
+#right-panel {
+    position: absolute;
+    top: var(--hh);
+    right: 0px;
+    width: 25%;
+    padding: 15px;
+    min-width: 225px;
+}
+
+
+/*Each line in the places list*/
 
 .place-list {
     font-size: 10pt;
@@ -66,6 +134,14 @@ h1 {
     cursor: pointer;
     color: #666
 }
+
+#active-poly {
+    stroke: red !important;
+    stroke-width: 3px !important;
+}
+
+
+/*Style Hovers*/
 
 .working-site:hover {
     color: var(--blue)!important;
@@ -139,8 +215,4 @@ h1 {
 
 #button-holder {
     max-width: 300px;
-}
-
-.panel {
-    background: white;
 }

@@ -42,8 +42,36 @@ df.head()
 df['db'] = 'Completed Sites'
 df.head()
 
+#%%
+
+df['Primary TEC'] = df['Primary TEC'].str.upper()
+df['Primary TEC'].unique()
+
+#%%
+
+df['Primary TEC'] = df['Primary TEC'].str.replace( 'HABITAT FOR WATERBIRDS' , "STECIslands")
+df['Primary TEC'] = df['Primary TEC'].str.replace( 'COASTAL WETLANDS' , "STECCoastWet")
+df['Primary TEC'] = df['Primary TEC'].str.replace( 'TRIBUTARY CONNECTIONS' , "STECTributary")
+df['Primary TEC'] = df['Primary TEC'].str.replace( 'COASTAL AND MARITIME FORESTS' , "STECForests")
+df['Primary TEC'] = df['Primary TEC'].str.replace( 'OYSTER REEFS' , "STECOyster")
+df['Primary TEC'] = df['Primary TEC'].str.replace( 'EELGRASS BEDS' , "STECEelgrass")
+df['Primary TEC'] = df['Primary TEC'].str.replace( 'SHORELINES AND SHALLOWS' , "STECShore")
+df['Primary TEC'] = df['Primary TEC'].str.replace( 'ENCLOSED AND CONFINED WATERS' , "STECWater")
+df['Primary TEC'] = df['Primary TEC'].str.replace( 'PUBLIC ACCESS' , "STECAccess")
+df['Primary TEC'] = df['Primary TEC'].str.replace( 'ACQUISITION' , "STECAcquisition")
+df['Primary TEC'] = df['Primary TEC'].str.replace( 'FISH, CRABS AND LOBSTERS' , "STECAquaticHab")
+df['Primary TEC'] = df['Primary TEC'].str.replace( 'SEDIMENT COMINATION' , "STECSediment")
+
+
+df['Primary TEC'].unique()
+
+
 # %%
 
 df.to_file(  os.path.join(folder , "Completed.geojson") , encoding ='utf-8',driver="GeoJSON")
+
+# %%
+
+
 
 # %%
