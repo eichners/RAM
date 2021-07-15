@@ -131,7 +131,6 @@ function generatePolygon(data_working, data_retired, point_data, L) {
 
 //Right panel Conent will go here.
 function fillRigthPanel(filtered){
-    console.log( filtered[0] )
     props = filtered[0].properties
     panel = $("#right-panel")
     panel.html( `<div> 
@@ -162,7 +161,6 @@ $.getJSON(url_retired, function(data_retired) {
             generatePanel(data_working.features, data_retired.features, point_data.features);
             generatePolygon(data_working.features, data_retired.features, point_data, L);
 
-            console.log(point_data)
             let checked_working = data_working.features;
             let checked_retired = data_retired.features;
             let checked_points = point_data.features;
@@ -238,7 +236,7 @@ $.getJSON(url_retired, function(data_retired) {
             //---------------------- BUTTON INTERACTION -> Filtering
             $(".change-detect").change(function() { //If change on button groups -> Both checks and Buttons
                 let btn_ids = [];
-                $(".btn-check").each(function() { // Get all ids in the button group
+                $(".tec-buttons").each(function() { // Get all ids in the button group
                     btn_ids.push(this.id);
                 });
 
@@ -250,7 +248,7 @@ $.getJSON(url_retired, function(data_retired) {
                         all_checked.push($("#" + b).attr("value"));
                     }
                 })
-
+                
                 // Go over all checked columns (values) to check for true values
                 // ---- Filter Working Sites
                 let filtered_working = []
@@ -314,17 +312,43 @@ $.getJSON(url_retired, function(data_retired) {
                 //CHECKS FILTERING
 
                 //-------------CHECKS BOXES HERE
-                let checks = [];
-                $(".form-check-input").each(function() { // Get all ids in the button group
-                    checks.push({
-                        value: this.value,
-                        check: this.checked
-                    })
+                let all_buttons = []
+                $(".btn-2").each(function() { // Get all ids in the button group
+                    all_buttons.push( this.id );
                 });
+
+                //All checked boxes
+                let all_pressed = [];
+                all_buttons.forEach(function(b) {
+
+                    let the_div = $(`div[id=${b}]`);
+
+                    if ( $("#" + b).is(':checked') === true) {
+                        all_pressed.push($("#" + b).attr("value"));
+                        the_div.css("background-color","white")
+                    }else{
+                        the_div.css("background-color","rgba(0,0,0,0.1)")
+                    }
+                })
+
+                //Format check boxes
+                let checks = [
+                    {"value":"Working Sites" , "check":false},
+                    {"value":"Retired Sites" , "check":false},
+                    {"value":"Completed Sites" , "check":false}
+                ];
+
+                if( all_pressed.length > 0){
+                    all_pressed.forEach(function(pressed){
+                        objIndex = checks.findIndex((obj => obj.value == pressed));
+                        checks[objIndex].check = true;
+                    })
+                }              
 
                 checked_working = []
                 checked_retired = []
-                checked_points = []
+                checked_completed = []
+
                 checks.forEach(function(check){
                     
                     // -- For Working Sites
