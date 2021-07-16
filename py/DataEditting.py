@@ -62,9 +62,12 @@ df['Primary TEC'] = df['Primary TEC'].str.replace( 'ACQUISITION' , "STECAcquisit
 df['Primary TEC'] = df['Primary TEC'].str.replace( 'FISH, CRABS AND LOBSTERS' , "STECAquaticHab")
 df['Primary TEC'] = df['Primary TEC'].str.replace( 'SEDIMENT COMINATION' , "STECSediment")
 
-
 df['Primary TEC'].unique()
 
+#%%
+
+df.dropna( axis=1 , how='all')
+df.head()
 
 # %%
 

@@ -205,15 +205,6 @@ $.getJSON(url_retired, function(data_retired) {
                 })
             });
 
-            // If clicked on the map on empty space
-            /*
-            $('path, #map').click( function(){
-                $(this).attr('class')
-            })
-            */
-            
-
-
             //---------------------- POP-UP TEC ------------------------------
             $('#button-holder').mouseenter(function() {
                 
@@ -325,9 +316,9 @@ $.getJSON(url_retired, function(data_retired) {
 
                     if ( $("#" + b).is(':checked') === true) {
                         all_pressed.push($("#" + b).attr("value"));
-                        the_div.css("background-color","white")
+                        the_div.css("background-color","white");
                     }else{
-                        the_div.css("background-color","rgba(0,0,0,0.1)")
+                        the_div.css("background-color","rgba(0,0,0,0.1)");
                     }
                 })
 
