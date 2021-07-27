@@ -133,10 +133,8 @@ h1 {
 #holder {
     position: relative;
     max-height: inherit;
-    margin-top: 15px;
-    padding: 5px 5px 5px 5px;
+    padding: 15px 5px 5px 5px;
     overflow-y: scroll;
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
     flex-grow: 1;
 }
 
@@ -287,4 +285,41 @@ label {
 
 #target-eco:hover {
     color: var(--orange)
+}
+
+.Working-popup-type {
+    color: var(--blue);
+    font-weight: 400;
+    font-family: "ff-tisa-sans-web-pro", sans-serif;
+    font-size: 9pt;
+}
+
+.Working-popup-text {
+    color: var(--blue);
+    font-weight: 700;
+    font-family: "ff-tisa-sans-web-pro", sans-serif;
+    font-size: 11pt;
+}
+
+.Retired-popup-type {
+    color: var(--green);
+    font-weight: 400;
+    font-family: "ff-tisa-sans-web-pro", sans-serif;
+    font-size: 9pt;
+}
+
+.Retired-popup-text {
+    color: var(--green);
+    font-weight: 700;
+    font-family: "ff-tisa-sans-web-pro", sans-serif;
+    font-size: 11pt;
+}
+
+.site-button {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
 }
