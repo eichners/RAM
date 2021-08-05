@@ -10,6 +10,16 @@ p {
     line-height: 1.5;
 }
 
+a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--green);
+    text-decoration: none;
+}
+
 
 /*Import Tisa Sans*/
 
@@ -170,6 +180,18 @@ img {
         width: calc(100% - 300px);
         overflow-y: hidden;
         max-width: unset;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .info-panel {
+        visibility: hidden;
+    }
+}
+
+@media screen and (max-height: 550px) {
+    .info-panel {
+        visibility: hidden;
     }
 }
 

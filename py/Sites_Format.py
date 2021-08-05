@@ -22,6 +22,7 @@ df['Photo'] = False
 df['Photo_Credit'] = None
 df["CRPID"] = df['CRPProjID']
 df = df.drop('CRPProjID',axis=1)
+df['db'] = 'Completed'
 
 df.head()
 # %%
