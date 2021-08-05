@@ -26,6 +26,11 @@ df = df.drop('CRPProjID',axis=1)
 df.head()
 # %%
 
+df['SiteName'] = df['Name']
+df = df.drop('Name',axis=1)
+
+#%%
+
 import geopandas as gpd
 
 gdf = gpd.GeoDataFrame(df,geometry=gpd.points_from_xy(
