@@ -1,0 +1,56 @@
+Arguments: 
+  C:\Program Files (x86)\nodejs\node.exe C:\Users\csucuogl\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add -D svelte-uswds
+
+PATH: 
+  C:\Python39\Scripts\;C:\Python39\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\nodejs\;C:\ProgramData\chocolatey\bin;C:\PRGS\PYTHON38\Scripts\;C:\PRGS\PYTHON38\;C:\Users\csucuogl\AppData\Local\Microsoft\WindowsApps;C:\Users\csucuogl\AppData\Local\GitHubDesktop\bin;C:\Users\csucuogl\AppData\Local\Programs\Fiddler;C:\PRGS\Git\cmd;C:\Program Files\heroku\bin;C:\Users\csucuogl\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\csucuogl\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.17.0
+
+Platform: 
+  win32 ia32
+
+Trace: 
+  Error: EPERM: operation not permitted, copyfile 'C:\Users\csucuogl\AppData\Local\Yarn\Cache\v6\npm-leaflet-1.7.1-10d684916edfe1bf41d688a3b97127c0322a2a19-integrity\node_modules\leaflet\dist\leaflet.css' -> 'C:\Users\csucuogl\Desktop\test\svMapping\map1\node_modules\leaflet\dist\leaflet.css'
+
+npm manifest: 
+  {
+      "name": "svelte-app",
+      "version": "1.0.0",
+      "private": true,
+      "scripts": {
+          "build": "rollup -c",
+          "dev": "rollup -c -w",
+          "start": "sirv public --no-clear"
+      },
+      "devDependencies": {
+          "@colorfuldots/svelteit": "^1.0.0-alpha.7",
+          "@rollup/plugin-commonjs": "^17.0.0",
+          "@rollup/plugin-node-resolve": "^11.0.0",
+          "leaflet": "^1.7.1",
+          "rollup": "^2.3.4",
+          "rollup-plugin-css-only": "^3.1.0",
+          "rollup-plugin-livereload": "^2.0.0",
+          "rollup-plugin-postcss": "^4.0.0",
+          "rollup-plugin-svelte": "^7.0.0",
+          "rollup-plugin-terser": "^7.0.0",
+          "svelte": "^3.38.3",
+          "svelte-leafletjs": "^0.6.1"
+      },
+      "dependencies": {
+          "@anoram/leaflet-svelte": "0.0.7-1",
+          "jquery": "^3.6.0",
+          "just-flush": "^1.1.0",
+          "sirv-cli": "^1.0.0",
+          "sveltestrap": "^5.5.0"
+      }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
