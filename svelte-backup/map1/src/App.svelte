@@ -8,8 +8,10 @@
 	import InfoPanel from './InfoPanel.svelte';
 	import Header from './Header.svelte';	
 	import Hoverup from './Hoverup.svelte';
-	import Title from './Title.svelte'
+	import Title from './Title.svelte';
 	import {afterUpdate} from 'svelte';
+	import HomeButton from './Home.svelte'
+
 
 	let data;
 	let active_data;
@@ -36,6 +38,15 @@
 
 		data = [...working_Data.features,...retired_Data.features];
 		all_data = [...completed_Data , ...data ]
+
+		//Sort All Data Alphabetically
+		all_data = all_data.sort( function( a, b ) {
+			a = a.properties.SiteName.toLowerCase();
+			b = b.properties.SiteName.toLowerCase();
+
+			return a < b ? -1 : a > b ? 1 : 0;
+		});
+
 	});
 
 	//Filter Function. Filter goes to GeoJSON.svelte
@@ -160,14 +171,17 @@
 		title_hover.name=null;
 	}
 
-
-
 	//Hide Hover at Start-Up
 	afterUpdate( () => {
 		let eco = [...document.getElementsByClassName('hoverup')][0];
 		if( eco ) eco.hidden = true;
 	})
 	
+	function handleClick(e){
+		active_data = null;
+		//let active = document.getElementsByClassName("active")[0];
+		//active.className.baseVal = "leaflet-interactive"
+	}
 
 </script>
 
@@ -182,6 +196,7 @@
 	<!-- Initiate Map Here-->
 	<div class="full-site">
 		<LeafletMap >
+			<HomeButton on:homebutton={handleClick}/>
 			{#key filters}
 				<GeoJson on:message={handleMessage} geojson={data} {filters}/>
 				<GeoPoint on:message={handleMessage} geojson={completed_Data} {filters}/>

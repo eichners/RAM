@@ -233,6 +233,14 @@ img {
     padding-top: 0px;
 }
 
+.tec-logos {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fill, minmax(35px, auto));
+    padding-top: 0px;
+    padding-left: 0px;
+}
+
 .t1 {
     font-family: "ff-tisa-sans-web-pro", sans-serif;
     font-weight: bold;

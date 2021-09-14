@@ -22,11 +22,6 @@
     attribution:'Design by <a href="https://commons.pratt.edu/savi/">SAVI</a>, Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
   }).addTo(map);
 
-  L.easyButton( '<i class="fa fa-home" aria-hidden="true"></i>' , function(btn, map){
-      map.setView([40.734, -73.957],11);
-  }).addTo( map);
-
-
   onMount(() => {
     mapContainer.appendChild(map.getContainer());
     map.getContainer().style.width = "100%";
